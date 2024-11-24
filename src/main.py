@@ -1,7 +1,5 @@
 # https://developers.cloudflare.com/cache/
-import parse from urllib
-import json
-import request
+import json, request
 from js import Response, Headers
 
 async def game_id_list():
@@ -9,7 +7,7 @@ async def game_id_list():
 
 
 async def on_fetch(request, ctx, env) -> Response:
-  pathname: str = parse.urlparse(request.url).path or "/"
+  pathname: str = request.url[29:] or "/"
   
   # 接続をウェブフックを使いディスコードで通知する
   res = requests.post(env.get("WEBHOOK_URL"), headers={"content-type": "application/json"}, json={"content": f'パスネーム {pathname}\nメソッド {request.get("method")}'})
