@@ -1,15 +1,21 @@
-name: Deploy Worker
-on:
-  push:
-    branches:
-      - main
+name: Cloudflare Pages
+
+on: [push]
+
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+  publish:
+    runs-on: ubuntu-20.04
+    permissions:
+      contents: read
+      deployments: write
     steps:
-      - uses: actions/checkout@v4
-      - name: Build & Deploy Worker
-        uses: cloudflare/wrangler-action@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+     
+     # ここで好きなビルド処理をする
+     
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@1
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
