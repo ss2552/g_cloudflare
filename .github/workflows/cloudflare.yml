@@ -1,14 +1,17 @@
 name: Cloudflare Pages
 
-on: [push]
-
+on:
+  push:
+    branches:
+      - main
 jobs:
   publish:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: deploy
+        # https://github.com/cloudflare/wrangler-action
         uses: cloudflare/wrangler-action@v3
         with:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
