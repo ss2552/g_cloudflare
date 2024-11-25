@@ -10,8 +10,7 @@ async def on_fetch(request, ctx, env) -> Response:
   pathname: str = request.url[29:] or "/"
   
   # 接続をウェブフックを使いディスコードで通知する
-  res = requests.post(env.get("WEBHOOK_URL"), headers={"content-type": "application/json"}, json={"content": f'パスネーム {pathname}\nメソッド {request.get("method")}'})
-  print(res.status)
+  await fetch(env.get("WEBHOOK_URL"), {"header":{"content-type": "application/json"}, "body": {"content": f'パスネーム {pathname}\nメソッド {request.get("method")}'}})
 
   # ゲットならステータス404を返す
   if request.method == "GET":
