@@ -13,7 +13,7 @@ async def on_fetch(request, ctx, env) -> Response:
   res = requests.post(env.get("WEBHOOK_URL"), headers={"content-type": "application/json"}, json={"content": f'パスネーム {pathname}\nメソッド {request.get("method")}'})
   print(res.status)
 
-  //ゲットならステータス404を返す
+  # ゲットならステータス404を返す
   if request.method == "GET":
     return Response.new("Not Found.", status = 404)
   else:
