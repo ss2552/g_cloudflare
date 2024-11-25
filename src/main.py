@@ -1,6 +1,6 @@
 # https://developers.cloudflare.com/cache/
-import json, requests
-from js import Response, Headers
+import json
+from js import Response, Headers, fetch
 
 async def game_id_list():
   pass
