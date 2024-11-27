@@ -1,6 +1,6 @@
 # https://developers.cloudflare.com/cache/
-import json
-from js import Response, Headers, fetch
+import json, httpx
+from js import Response, Headers # type: ignore
 
 async def game_id_list():
   pass
@@ -10,7 +10,7 @@ async def on_fetch(request, ctx, env) -> Response:
   pathname: str = request.url[29:] or "/"
   
   # 接続をウェブフックを使いディスコードで通知する
-  await fetch(env.get("WEBHOOK_URL"), {"header":{"content-type": "application/json"}, "body": {"content": f'パスネーム {pathname}\nメソッド {request.get("method")}'}})
+  await httpx.post(url=env.get("WEBHOOK_URL"), headers={"content-type": "application/json"}, json={"content": f'パスネーム {pathname}\nメソッド {request.get("method")}'})
 
   # ゲットならステータス404を返す
   if request.method == "GET":
