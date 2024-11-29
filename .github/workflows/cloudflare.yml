@@ -18,6 +18,6 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           environment: production
           secrets: |
-            WH_URL: WHURL
+            WH_URL: WH_URL
         env:
-          WHURL: ${{ secrets.WHURL }}
+          WH_URL: ${{ secrets.WH_URL }}
