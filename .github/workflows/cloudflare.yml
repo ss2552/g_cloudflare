@@ -1,4 +1,4 @@
-name: Cloudflare Pages
+name: g
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 jobs:
   publish:
-    runs-on: alphine-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
