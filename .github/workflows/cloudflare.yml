@@ -6,13 +6,10 @@ on:
       - main
 jobs:
   publish:
-    runs-on: ubuntu-latest
+    runs-on: alphine-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: deploy
         # https://github.com/cloudflare/wrangler-action
         uses: cloudflare/wrangler-action@v3
-        with:
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
